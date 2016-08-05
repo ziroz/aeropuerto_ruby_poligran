@@ -5,7 +5,8 @@
 #  id                :integer          not null, primary key
 #  token             :string
 #  name              :string
-#  number_of_request :integer
+#  number_of_request :integer          default(0)
+#  active            :boolean          default(TRUE)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
