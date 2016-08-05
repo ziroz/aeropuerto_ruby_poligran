@@ -1,0 +1,1 @@
+json.array! @passenger_flights, partial: 'passenger_flights/passenger_flight', as: :passenger_flight
