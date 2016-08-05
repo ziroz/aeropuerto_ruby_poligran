@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyString
+  destiny: MyString
+  date: 2016-08-05 18:22:44
+  airplane_id: 
+
+two:
+  origin: MyString
+  destiny: MyString
+  date: 2016-08-05 18:22:44
+  airplane_id: 

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :passenger_flights
+  resources :passengers
+  resources :flights
   resources :airplanes
   resources :users
   resources :tokens

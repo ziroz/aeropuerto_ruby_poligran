@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803044741) do
+ActiveRecord::Schema.define(version: 20160805164145) do
 
   create_table "airplanes", force: :cascade do |t|
     t.string   "model"
@@ -19,6 +19,37 @@ ActiveRecord::Schema.define(version: 20160803044741) do
     t.string   "company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.string   "origin"
+    t.string   "destiny"
+    t.datetime "date"
+    t.integer  "airplane_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "flights", ["airplane_id"], name: "index_flights_on_airplane_id"
+
+  create_table "passenger_flights", force: :cascade do |t|
+    t.integer  "passenger_id"
+    t.integer  "flight_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "passenger_flights", ["flight_id"], name: "index_passenger_flights_on_flight_id"
+  add_index "passenger_flights", ["passenger_id"], name: "index_passenger_flights_on_passenger_id"
+
+  create_table "passengers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "identification"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "tokens", force: :cascade do |t|
