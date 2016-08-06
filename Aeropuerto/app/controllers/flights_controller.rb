@@ -25,7 +25,8 @@ class FlightsController < ApplicationController
   # POST /flights.json
   def create
     @flight = Flight.new(flight_params)
-
+p '--------------'
+p @flight 
     respond_to do |format|
       if @flight.save
         format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
@@ -40,8 +41,11 @@ class FlightsController < ApplicationController
   # PATCH/PUT /flights/1
   # PATCH/PUT /flights/1.json
   def update
+    @flight = Flight.new(flight_params)
+    @flight.id = params[:id]
+
     respond_to do |format|
-      if @flight.update(flight_params)
+      if @flight.update
         format.html { redirect_to @flight, notice: 'Flight was successfully updated.' }
         format.json { render :show, status: :ok, location: @flight }
       else

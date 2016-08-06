@@ -18,7 +18,7 @@ class TokensControllerTest < ActionController::TestCase
 
   test "should create token" do
     assert_difference('Token.count') do
-      post :create, token: { active: @token.active, name: @token.name, number_of_request: @token.number_of_request, token: @token.token }
+      post :create, token: { active: @token.active, name: @token.name, number_request: @token.number_request, token: @token.token }
     end
 
     assert_redirected_to token_path(assigns(:token))
@@ -35,7 +35,7 @@ class TokensControllerTest < ActionController::TestCase
   end
 
   test "should update token" do
-    patch :update, id: @token, token: { active: @token.active, name: @token.name, number_of_request: @token.number_of_request, token: @token.token }
+    patch :update, id: @token, token: { active: @token.active, name: @token.name, number_request: @token.number_request, token: @token.token }
     assert_redirected_to token_path(assigns(:token))
   end
 

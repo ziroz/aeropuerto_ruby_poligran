@@ -16,11 +16,11 @@
 one:
   token: MyString
   name: MyString
-  number_of_request: 1
+  number_request: 1
   active: false
 
 two:
   token: MyString
   name: MyString
-  number_of_request: 1
+  number_request: 1
   active: false

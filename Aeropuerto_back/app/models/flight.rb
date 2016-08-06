@@ -15,9 +15,9 @@ class Flight < ActiveRecord::Base
   	belongs_to :airplane
 	has_many :passenger_flight
   
-	validates :origin, precense: true
-	validates :destiny, precense: true
-	validates :date, precense: true
-	validates :airplane_id, precense: true
+	validates :origin, presence: true
+	validates :destiny, presence: true
+	validates :date, presence: true
+	validates :airplane_id, presence: true
 
 end

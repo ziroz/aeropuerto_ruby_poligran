@@ -1,11 +1,7 @@
+class Passenger
 
-require 'active_model'
 
-class Base
-	include ActiveModel::Model#Es para usar el first, create, save que se pone cuando se hace por scaffold
-  	include ActiveModel::Validations
- 	include ActiveModel::AttributeMethods	
-  	include ActiveModel::Conversion
+include ActiveModel::Model#Es para usar el first, create, save que se pone cuando se hace por scaffold
 
  	BASE_URL = 'http://localhost:3000/'
  	TOKEN = '428ae8d1-8b80-4739-ad26-78b0e6e89a5a';
@@ -14,10 +10,14 @@ class Base
 		self.id.present?
 	end
 
-	def self.endpoint
-		raise 'Not implemented' #raise es para lanzar una excepción
-	end
 
+	attr_accessor :id, :name, :identification, :phone, :email, :address, :created_at, :updated_at,:url
+
+	validates :name, presence: true
+	validates :identification, presence: true
+	validates :phone, presence: true
+	validates :email, presence: true
+    validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
 	def self.path (request_path = "")
 		BASE_URL + self.endpoint + request_path + '.json'
@@ -54,4 +54,21 @@ class Base
 		HTTParty.delete(self.class.path("/#{id}"), headers: { 'token' => TOKEN })
 	end
 
+
+	def self.endpoint
+		'passengers'	
+	end
+
+	def to_json
+		{ 
+			passenger: {
+				id: self.id,
+				name: self.name,
+				identification: self.identification,
+				phone: self.phone,
+				email: self.email,
+				address: self.address
+			}
+		}
+	end
 end

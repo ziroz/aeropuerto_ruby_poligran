@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :tokens
   resources :passenger_flights
   resources :passengers
   resources :flights
   resources :airplanes
   resources :users
-  resources :tokens
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

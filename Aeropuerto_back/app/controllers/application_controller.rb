@@ -15,9 +15,12 @@ class ApplicationController < ActionController::Base
 	def api_authentication
 
 		if current_token.nil?
-			#render json:{ error: 'Token invalid' } 
+			render json:{ error: 'Token invalid' } 
 		else
-			current_token.number_of_request += 1
+			p '------------------------'
+			p current_token.number_request
+
+			current_token.number_request += 1
 			current_token.save
 		end
 	end

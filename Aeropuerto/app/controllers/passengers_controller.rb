@@ -40,8 +40,11 @@ class PassengersController < ApplicationController
   # PATCH/PUT /passengers/1
   # PATCH/PUT /passengers/1.json
   def update
+    @passenger = Passenger.new(passenger_params)
+    @passenger.id = params[:id]
+
     respond_to do |format|
-      if @passenger.update(passenger_params)
+      if @passenger.update
         format.html { redirect_to @passenger, notice: 'Passenger was successfully updated.' }
         format.json { render :show, status: :ok, location: @passenger }
       else
