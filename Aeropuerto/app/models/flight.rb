@@ -8,6 +8,9 @@ class Flight < Base
 	validates :date, presence: true
 	validates :airplane_id, presence: true
 
+	def passengers
+		PassengerFlight.find(flight_id: self.id)
+	end
 
 private 
 

@@ -18,6 +18,11 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'coffee-script-source', '1.8.0'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap-glyphicons'
+gem "font-awesome-rails"
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 gem 'httparty'
 

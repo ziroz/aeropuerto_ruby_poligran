@@ -1,37 +1,37 @@
 <%= form_for(@passenger) do |f| %>
-  <% if @passenger.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@passenger.errors.count, "error") %> prohibited this passenger from being saved:</h2>
+<% if @passenger.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(@passenger.errors.count, "error") %> prohibited this passenger from being saved:</h2>
 
-      <ul>
-      <% @passenger.errors.full_messages.each do |message| %>
+   <ul>
+        <% @passenger.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <% end %>
+   </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :identification %><br>
-    <%= f.text_field :identification %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="form-group">
+ <%= f.label :name %><br>
+ <%= f.text_field :name, class: 'form-control' %>
+</div>
+<div class="form-group">
+ <%= f.label :identification %><br>
+ <%= f.text_field :identification, class: 'form-control' %>
+</div>
+<div class="form-group">
+ <%= f.label :email %><br>
+ <%= f.text_field :email, class: 'form-control' %>
+</div>
+<div class="form-group">
+ <%= f.label :phone %><br>
+ <%= f.text_field :phone, class: 'form-control' %>
+</div>
+<div class="form-group">
+ <%= f.label :address %><br>
+ <%= f.text_field :address, class: 'form-control' %>
+</div>
+<div class="actions text-xs-right">
+ <%= f.submit 'Aceptar', :class => 'btn btn-primary' %>
+</div>
 <% end %>

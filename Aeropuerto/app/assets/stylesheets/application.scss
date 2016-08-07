@@ -13,4 +13,22 @@
  *= require_self
  */
 @import "bootstrap";
+@import "font-awesome";
+@import 'bootstrap/glyphicons';
+@import 'bootstrap-datetimepicker';
 
+.table .actions > a{
+	color: #555;
+}
+
+.table-hover tbody tr:hover .actions a{
+	color: black;
+}
+
+.form-header{
+	margin-bottom: 20px;
+}
+
+.navbar{
+    margin-bottom: 20px;
+}
