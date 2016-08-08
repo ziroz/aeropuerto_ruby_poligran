@@ -1,1 +1,0 @@
-json.partial! "passenger_flights/passenger_flight", passenger_flight: @passenger_flight
