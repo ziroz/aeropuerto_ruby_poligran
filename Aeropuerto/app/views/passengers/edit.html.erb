@@ -4,9 +4,9 @@
 
 		<%= render 'form' %>
 
-		<%= link_to 'Ver', @passenger %> |
-		<%= link_to 'Volver', passengers_path %>
-
-
+		<div class="text-xs-right">
+			<%= link_to 'Detalle', passenger_show_path(@passenger.id) %> |
+			<%= link_to 'Volver', passenger_flights_show_path(@passenger.flight_id) %>
+		</div>
 	</div>
 </div>

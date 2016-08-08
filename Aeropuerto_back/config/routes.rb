@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   resources :tokens
-  resources :passenger_flights
   resources :passengers
   resources :flights
   resources :airplanes
   resources :users
+
+get 'passenger_flights/index/:id' => 'passenger_flights#index_passenger'
+get 'passenger_flights/:id' => 'passenger_flights#index'
+delete 'passenger_flights/:id' => 'passenger_flights#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

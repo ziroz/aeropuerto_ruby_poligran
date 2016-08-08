@@ -1,10 +1,29 @@
 Rails.application.routes.draw do
+  get 'flights/find'
 
+  get 'flights/select'
+
+  get 'sessions/new'
+
+  get '/passengers/new/:id', to: 'passengers#new', :as => "passenger_new"
+  get '/passengers/show/:id', to: 'passengers#show', :as => "passenger_show"
+  get '/passengers/Edit/:id', to: 'passengers#edit', :as => "passenger_edit"
+  delete '/passengers/delete/:id', to: 'passengers#destroy', :as => "passenger_delete"
+  post '/passengers/create', to: 'passengers#create', :as => "passenger_create"
+  post '/passengers/update', to: 'passengers#update', :as => "passenger_update"
+
+  resources :users
   resources :airplanes
-  resources :passengers
   resources :flights
   resources :airplanes
-  resources :users
+
+  get '/passenger_flights/:id', to: 'passenger_flights#index', :as => "passenger_flights_show"
+
+  get '/', to: 'flights#index'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,6 @@
-<%= form_for(@passenger) do |f| %>
+
+ <%= @passenger.id %>
+<%= form_for(@passenger, :url => @passenger.id ? passenger_update_path : passenger_create_path, method: "post") do |f| %>
 <% if @passenger.errors.any? %>
 <div id="error_explanation">
    <h2><%= pluralize(@passenger.errors.count, "error") %> prohibited this passenger from being saved:</h2>
@@ -10,25 +12,27 @@
    </ul>
 </div>
 <% end %>
+ <%= f.hidden_field :id %>
+ <%= f.hidden_field :flight_id %>
 
 <div class="form-group">
- <%= f.label :name %><br>
+ <%= f.label :name, 'Nombre' %><br>
  <%= f.text_field :name, class: 'form-control' %>
 </div>
 <div class="form-group">
- <%= f.label :identification %><br>
+ <%= f.label :identification, 'Identificación' %><br>
  <%= f.text_field :identification, class: 'form-control' %>
 </div>
 <div class="form-group">
- <%= f.label :email %><br>
+ <%= f.label :email, 'Email' %><br>
  <%= f.text_field :email, class: 'form-control' %>
 </div>
 <div class="form-group">
- <%= f.label :phone %><br>
+ <%= f.label :phone, 'Celular' %><br>
  <%= f.text_field :phone, class: 'form-control' %>
 </div>
 <div class="form-group">
- <%= f.label :address %><br>
+ <%= f.label :address, 'Dirección' %><br>
  <%= f.text_field :address, class: 'form-control' %>
 </div>
 <div class="actions text-xs-right">

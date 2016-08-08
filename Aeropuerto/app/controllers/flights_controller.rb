@@ -1,4 +1,5 @@
 class FlightsController < ApplicationController
+  before_action :logged_in?
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   # GET /flights
@@ -25,8 +26,8 @@ class FlightsController < ApplicationController
   # POST /flights.json
   def create
     @flight = Flight.new(flight_params)
-p '--------------'
-p @flight 
+    p '------*-*-*-*-*-*---------'
+    p @flight
     respond_to do |format|
       if @flight.save
         format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
@@ -69,10 +70,11 @@ p @flight
     # Use callbacks to share common setup or constraints between actions.
     def set_flight
       @flight = Flight.find(params[:id])
+      @flight.date = @flight.date_flight
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flight_params
       params.require(:flight).permit(:origin, :destiny, :date, :airplane_id)
     end
-end
+  end

@@ -1,3 +1,6 @@
+<% collection = JSON.parse(@flight.countries).map {|c| [ c['name'], c['name'] ] } %>
+
+
 <%= form_for(@flight) do |f| %>
 <% if @flight.errors.any? %>
 <div id="error_explanation">
@@ -12,28 +15,26 @@
 <% end %>
 
 <div class="form-group">
-  <%= f.label :origin %><br>
-  <%= f.text_field :origin, class: 'form-control' %>
+  <%= f.label :origin, 'Origen' %><br>
+  <%= select(:flight, :origin, options_for_select(collection, @flight.origin), {}, { :class=>'form-control' }) %>
 </div>
 <div class="form-group">
-  <%= f.label :destiny %><br>
-  <%= f.text_field :destiny, class: 'form-control' %>
+  <%= f.label :destiny, 'Destino' %><br>
+  <%= select(:flight, :destiny, options_for_select(collection, @flight.destiny), {}, { :class=>'form-control' }) %>
 </div>
 <div class="form-group">
-  <%= @flight.date %>
-
-  <%= f.label :date %><br>
+  <%= f.label :date, 'Fecha y Hora' %><br>
   <div class='input-group date' id='datetimepicker1'>
-     <%= f.text_field :date, class: 'form-control' %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
-  </div>
+   <%= f.text_field :date, class: 'form-control' %>
+   <span class="input-group-addon">
+    <span class="glyphicon glyphicon-calendar"></span>
+  </span>
+</div>
 
 </div>
 <div class="form-group">
-  <%= f.label :airplane_id %><br>
-  <%= f.collection_select :airplane_id, Airplane.all, :id, :model, {}, { :class => 'form-control' } %>
+  <%= f.label :airplane_id, 'Avión' %><br>
+  <%= f.collection_select :airplane_id, Airplane.all, :id, :name_airplane, {}, { :class => 'form-control' } %>
 
 </div>
 <div class="actions text-xs-right">
@@ -42,7 +43,9 @@
 <% end %>
 
 <script type="text/javascript">
-  $(function () {
-      $('#datetimepicker1').datetimepicker();
+$(function () {
+  $('#datetimepicker1').datetimepicker({
+    format: 'DD-MM-YYYY hh:mm a'
   });
+});
 </script>

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @passenger.name %>
 </p>
 
 <p>
-  <strong>Identification:</strong>
+  <strong>Identificación:</strong>
   <%= @passenger.identification %>
 </p>
 
@@ -16,14 +16,14 @@
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Celular:</strong>
   <%= @passenger.phone %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Dirección:</strong>
   <%= @passenger.address %>
 </p>
 
-<%= link_to 'Edit', edit_passenger_path(@passenger) %> |
-<%= link_to 'Back', passengers_path %>
+<%= link_to 'Editar', passenger_edit_path(@passenger.id) %> |
+<%= link_to 'Volver', passenger_flights_show_path(@passenger.flight_id) %>

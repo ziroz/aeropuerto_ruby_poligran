@@ -1,15 +1,15 @@
 class PassengerFlightsController < ApplicationController
-  before_action :set_passenger_flight, only: [:show, :edit, :update, :destroy]
-
-  # GET /passenger_flights
-  # GET /passenger_flights.json
-  def index
-    @passenger_flights = PassengerFlight.all
-  end
+  before_action :set_passenger_flight, only: [:update, :destroy]
 
   # GET /passenger_flights/1
   # GET /passenger_flights/1.json
-  def show
+  def index
+    @passenger_flights = PassengerFlight.where(flight_id: params[:id])
+  end
+
+  def index_passenger
+    @passenger_flights = PassengerFlight.where(passenger_id: params[:id])
+    render :index
   end
 
   # GET /passenger_flights/new

@@ -14,7 +14,7 @@
 
 class Passenger < ActiveRecord::Base
 	has_many :passenger_flight
-
+	attr_accessor :flight_id
 	validates :name, presence: true
 	validates :identification, presence: true
 	validates :phone, presence: true

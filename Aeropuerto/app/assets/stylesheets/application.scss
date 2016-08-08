@@ -17,18 +17,34 @@
 @import 'bootstrap/glyphicons';
 @import 'bootstrap-datetimepicker';
 
+
+
 .table .actions > a{
-	color: #555;
+  color: #555;
 }
 
 .table-hover tbody tr:hover .actions a{
-	color: black;
+  color: black;
 }
 
 .form-header{
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .navbar{
     margin-bottom: 20px;
+}
+
+.dropdown-menu{
+    min-width: 120px;
+}
+
+.dropdown-menu>li>a{
+      display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
 }

@@ -1,21 +1,26 @@
 require_relative 'base.rb'
 
 class Airplane < Base
-	
+
 	attr_accessor :model, :code, :company, :id, :created_at, :updated_at,:url
- 
+
 	validates :model, presence: true
 	validates :code, presence: true
 	validates :company, presence: true
 
-private 
+
+	def name_airplane
+		self.model + ' - ' + self.company
+	end
+
+private
 
 	def self.endpoint
-		'airplanes'	
+		'airplanes'
 	end
 
 	def to_json
-		{ 
+		{
 			airplane: {
 				id: self.id,
 				model: self.model,

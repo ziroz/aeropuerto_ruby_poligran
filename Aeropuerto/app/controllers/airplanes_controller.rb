@@ -1,4 +1,5 @@
 class AirplanesController < ApplicationController
+  before_action :logged_in?
   before_action :set_airplane, only: [:show, :edit, :update, :destroy]
 
   # GET /airplanes

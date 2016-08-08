@@ -1,1 +1,1 @@
-json.partial! "passenger_flights/passenger_flight", passenger_flight: @passenger_flight
+json.array! @passenger_flights, partial: 'passenger_flights/passenger_flight', as: :passenger_flight

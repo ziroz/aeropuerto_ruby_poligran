@@ -1,11 +1,6 @@
 class PassengersController < ApplicationController
-  before_action :set_passenger, only: [:show, :edit, :update, :destroy]
-
-  # GET /passengers
-  # GET /passengers.json
-  def index
-    @passengers = Passenger.all
-  end
+  before_action :logged_in?, only: [:index, :show, :update, :destroy]
+  before_action :set_passenger, only: [:show, :edit, :destroy]
 
   # GET /passengers/1
   # GET /passengers/1.json
@@ -15,6 +10,7 @@ class PassengersController < ApplicationController
   # GET /passengers/new
   def new
     @passenger = Passenger.new
+    @passenger.flight_id = params[:id]
   end
 
   # GET /passengers/1/edit
@@ -24,11 +20,11 @@ class PassengersController < ApplicationController
   # POST /passengers
   # POST /passengers.json
   def create
-    @passenger = Passenger.new(passenger_params)
 
+    @passenger = Passenger.new(passenger_params)
     respond_to do |format|
       if @passenger.save
-        format.html { redirect_to @passenger, notice: 'Passenger was successfully created.' }
+        format.html { redirect_to passenger_show_path(Passenger.all.last.id), notice: 'Passenger was successfully created.' }
         format.json { render :show, status: :created, location: @passenger }
       else
         format.html { render :new }
@@ -41,11 +37,11 @@ class PassengersController < ApplicationController
   # PATCH/PUT /passengers/1.json
   def update
     @passenger = Passenger.new(passenger_params)
-    @passenger.id = params[:id]
-
+    p '-------------------sddgf-'
+    p params
     respond_to do |format|
       if @passenger.update
-        format.html { redirect_to @passenger, notice: 'Passenger was successfully updated.' }
+        format.html { redirect_to passenger_show_path(@passenger.id), notice: 'Passenger was successfully updated.' }
         format.json { render :show, status: :ok, location: @passenger }
       else
         format.html { render :edit }
@@ -57,9 +53,10 @@ class PassengersController < ApplicationController
   # DELETE /passengers/1
   # DELETE /passengers/1.json
   def destroy
+    PassengerFlight.find_by_passenger(@passenger.id).first.destroy
     @passenger.destroy
     respond_to do |format|
-      format.html { redirect_to passengers_url, notice: 'Passenger was successfully destroyed.' }
+      format.html { redirect_to passenger_flights_show_path(@passenger.flight_id), notice: 'Passenger was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,10 +65,11 @@ class PassengersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_passenger
       @passenger = Passenger.find(params[:id])
+      @passenger.flight_id = PassengerFlight.find_by_passenger(@passenger.id).first.flight_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def passenger_params
-      params.require(:passenger).permit(:name, :identification, :email, :phone, :address)
+      params.require(:passenger).permit(:id, :name, :identification, :email, :phone, :address, :flight_id)
     end
 end

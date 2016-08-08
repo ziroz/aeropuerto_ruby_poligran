@@ -25,5 +25,5 @@
   <%= @passenger.address %>
 </p>
 
-<%= link_to 'Edit', edit_passenger_path(@passenger) %> |
-<%= link_to 'Back', passengers_path %>
+<%= link_to 'Edit', passenger_edit(@passenger) %> |
+<%= link_to 'Back', passenger_flights_show(@passenger.flight_id) %>

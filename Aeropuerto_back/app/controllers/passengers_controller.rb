@@ -24,10 +24,18 @@ class PassengersController < ApplicationController
   # POST /passengers
   # POST /passengers.json
   def create
+    p '---------1--------'
     @passenger = Passenger.new(passenger_params)
-
+    p '---------2--------'
+    p params
     respond_to do |format|
       if @passenger.save
+
+        passenger_flight = PassengerFlight.new
+        passenger_flight.passenger_id = Passenger.all.last.id
+        passenger_flight.flight_id = @passenger.flight_id
+        passenger_flight.save
+
         format.html { redirect_to @passenger, notice: 'Passenger was successfully created.' }
         format.json { render :show, status: :created, location: @passenger }
       else
@@ -69,6 +77,6 @@ class PassengersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def passenger_params
-      params.require(:passenger).permit(:name, :identification, :phone, :email, :address)
+      params.require(:passenger).permit(:name, :identification, :phone, :email, :address, :flight_id)
     end
 end

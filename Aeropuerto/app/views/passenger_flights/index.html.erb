@@ -1,29 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Passenger Flights</h1>
+<h1>Pasajeros del Vuelo <%= @flight.origin + ' - ' +  @flight.destiny %><br/>
+<small> <%= @flight.date_flight  %></small>
+ </h1>
 
-<table>
+<table class="table table-responsed table-striped table-hover">
   <thead>
     <tr>
-      <th>Passenger</th>
-      <th>Flight</th>
-      <th colspan="3"></th>
+      <th>Nombres</th>
+      <th>Identificación</th>
+      <th>Email</th>
+      <th>Celular</th>
+      <th>Dirección</th>
+      <th colspan="3">Acciones</th>
     </tr>
   </thead>
-
   <tbody>
     <% @passenger_flights.each do |passenger_flight| %>
       <tr>
-        <td><%= passenger_flight.passenger_id %></td>
-        <td><%= passenger_flight.flight_id %></td>
-        <td><%= link_to 'Show', passenger_flight %></td>
-        <td><%= link_to 'Edit', edit_passenger_flight_path(passenger_flight) %></td>
-        <td><%= link_to 'Destroy', passenger_flight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= passenger_flight.passenger.name %></td>
+        <td><%= passenger_flight.passenger.identification %></td>
+        <td><%= passenger_flight.passenger.email %></td>
+        <td><%= passenger_flight.passenger.phone %></td>
+        <td><%= passenger_flight.passenger.address %></td>
+
+      <td class="actions">
+        <%= link_to(passenger_show_path(passenger_flight.passenger.id)) do %>
+        <%= fa_icon("eye", text: "Detalle") %>
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to(passenger_edit_path(passenger_flight.passenger)) do %>
+        <%= fa_icon("pencil", text: "Editar") %>
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to(passenger_delete_path(passenger_flight.passenger.id), method: :delete, data: { confirm: '¿Está seguro de eliminar el pasajero?' }) do %>
+        <%= fa_icon("times", text: "Eliminar") %>
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Passenger flight', new_passenger_flight_path %>
+<%= link_to(passenger_new_path(@flight.id)) do %>
+<%= fa_icon("plus-circle", text: "Agregar nuevo pasajero") %>
+<% end %>
+
